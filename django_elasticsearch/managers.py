@@ -8,7 +8,7 @@ except ImportError:  # python < 2.7
 from django.conf import settings
 try:
     from django.utils import importlib
-except:
+except ImportError:
     import importlib
 from django.db.models import FieldDoesNotExist
 
