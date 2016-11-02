@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from django.utils import six
 try:
     import importlib
 except ImportError:  # python < 2.7
@@ -87,7 +88,7 @@ class ElasticsearchManager():
 
     def get_serializer(self, **kwargs):
         serializer = self.model.Elasticsearch.serializer_class
-        if isinstance(serializer, basestring):
+        if isinstance(serializer, basestring if six.PY2: else str):
             module, kls = self.model.Elasticsearch.serializer_class.rsplit(".", 1)
             mod = importlib.import_module(module)
             return getattr(mod, kls)(self.model, **kwargs)
