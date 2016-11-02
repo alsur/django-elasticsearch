@@ -87,7 +87,7 @@ class IndexableModelMixin(object):
     def dispatch(self, request, *args, **kwargs):
         try:
             r = super(IndexableModelMixin, self).dispatch(request, *args, **kwargs)
-        except (ConnectionError, TransportError), e:
+        except (ConnectionError, TransportError) as e:
             # reset object list
             self.queryset = None
             self.es_failed = True
