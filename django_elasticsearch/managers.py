@@ -176,7 +176,7 @@ class ElasticsearchManager():
     def search(self, query,
                facets=None, facets_limit=None, global_facets=True,
                suggest_fields=None, suggest_limit=None,
-               fuzziness=None):
+               fuzziness=None, option_search='match'):
         """
         Returns a EsQueryset instance that acts a bit like a django Queryset
         facets is dictionnary containing facets informations
@@ -208,7 +208,7 @@ class ElasticsearchManager():
         if suggest_fields:
             q = q.suggest(fields=suggest_fields, limit=suggest_limit)
 
-        return q.query(query)
+        return q.query(query, option_search)
 
     # Convenience methods
     def all(self):

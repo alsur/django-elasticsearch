@@ -15,6 +15,7 @@ class EsQueryset(QuerySet):
     """
     MODE_SEARCH = 1
     MODE_MLT = 2
+    _option_search = 'match'
 
     def __init__(self, model, fuzziness=None):
         self.model = model
@@ -130,7 +131,7 @@ class EsQueryset(QuerySet):
 
         if self._query:
             search['query'] = {
-                'match': {
+                self._option_search: {
                     '_all': {
                         'query': self._query,
                         'fuzziness': fuzziness
@@ -288,9 +289,10 @@ class EsQueryset(QuerySet):
 
         return
 
-    def query(self, query):
+    def query(self, query, option_search='match'):
         clone = self._clone()
         clone._query = query
+        clone._option_search = option_search
         return clone
 
     def facet(self, fields, limit=None, use_globals=True):
