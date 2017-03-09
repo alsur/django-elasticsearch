@@ -8,6 +8,7 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.filters import DjangoFilterBackend
 
 from django_elasticsearch.models import EsIndexable
+from django.utils import six
 
 
 try:
@@ -38,7 +39,7 @@ class ElasticsearchFilterBackend(OrderingFilter, DjangoFilterBackend):
 
             filterable = getattr(view, 'filter_fields', [])
             filters = dict([(k, v)
-                            for k, v in request.GET.iteritems()
+                            for k, v in six.iteritems(request.GET)
                             if k in filterable])
 
             q = queryset.query(query).filter(**filters)
