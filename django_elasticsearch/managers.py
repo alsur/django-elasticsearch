@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from django.utils import six
+import six
 try:
     import importlib
 except ImportError:  # python < 2.7
