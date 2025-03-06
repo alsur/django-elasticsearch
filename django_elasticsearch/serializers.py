@@ -1,7 +1,7 @@
 import json
 import datetime
 
-from django.db.models import FieldDoesNotExist
+from django.core.exceptions import FieldDoesNotExist
 from django.db.models.fields.related import ManyToManyField
 from django.utils import six
 
