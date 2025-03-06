@@ -3,7 +3,7 @@ import datetime
 
 from django.core.exceptions import FieldDoesNotExist
 from django.db.models.fields.related import ManyToManyField
-from django.utils import six
+import six
 
 class EsSerializer(object):
     def serialize(self, instance):
