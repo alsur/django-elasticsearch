@@ -11,7 +11,7 @@ try:
     from django.utils import importlib
 except:
     import importlib
-from django.db.models import FieldDoesNotExist
+from django.core.exceptions import FieldDoesNotExist
 
 from django_elasticsearch.query import EsQueryset
 from django_elasticsearch.client import es_client
